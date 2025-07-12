@@ -9,6 +9,9 @@ root = Tk()
 root.geometry("900x600")
 root.resizable(False, False)
 root.configure(bg='#1ddb79')
+root.iconbitmap("illustration-of-book-icon-free-vector.ico")
+root.title("MyDiary")
+
 button_bg = "#d91c6e"
 frame_label_bg = "#d1dce3"
 
