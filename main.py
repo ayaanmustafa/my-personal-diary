@@ -1,9 +1,11 @@
+#------ LIBRARIES ----------
 from tkinter import * 
 from tkinter.scrolledtext import ScrolledText
 import sqlite3
 import hashlib
 from datetime import datetime as dt
 import helper
+
 #window setting
 root = Tk()
 root.geometry("900x600")
@@ -12,9 +14,12 @@ root.configure(bg='#1ddb79')
 root.iconbitmap("illustration-of-book-icon-free-vector.ico")
 root.title("MyDiary")
 
+#---SOME COLORS----
 button_bg = "#d91c6e"
 frame_label_bg = "#d1dce3"
 
+
+#--------CONNECTING WITH DATABASE-----
 conn = sqlite3.connect("Data.db")
 curr = conn.cursor()
 curr.execute('''
@@ -28,8 +33,8 @@ CREATE TABLE IF NOT EXISTS data(
 )
 conn.commit()
 conn.close()
-#pages => frames
 
+#pages => frames
 def start():
     title_var=StringVar()
 
@@ -118,7 +123,7 @@ def start():
             f.grid(column=0,row=i)
             helper.PrettyButton(f,label=f"{i+1}. {columns[i][1]}",
                                 colors=("black","white","#414141","#F0E10E"),
-                                cmd=lambda:text_view(heading=columns[i][1],data=columns[i][2]),relief="flat").get().place(relx=0.01,rely=0.2,relwidth=0.95,relheight=0.6)
+                                cmd=lambda i=i:text_view(heading=columns[i][1],data=columns[i][2]),relief="flat").get().place(relx=0.01,rely=0.2,relwidth=0.95,relheight=0.6)
             Label(sframe.viewPort,text=columns[i][3],anchor="w",font=("Tahoma",10,"normal")).grid(column=1,row=i)
         sframe.pack(side="top", fill="both", expand=True)
 
